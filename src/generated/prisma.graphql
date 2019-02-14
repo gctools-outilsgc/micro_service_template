@@ -1,0 +1,1428 @@
+type Address {
+  id: ID!
+  streetAddress: String!
+  city: String!
+  province: String!
+  postalCode: String!
+  country: String!
+  resident: Profile!
+}
+
+type AddressConnection {
+  pageInfo: PageInfo!
+  edges: [AddressEdge]!
+  aggregate: AggregateAddress!
+}
+
+input AddressCreateInput {
+  streetAddress: String!
+  city: String!
+  province: String!
+  postalCode: String!
+  country: String!
+  resident: ProfileCreateOneWithoutAddressInput!
+}
+
+input AddressCreateOneWithoutResidentInput {
+  create: AddressCreateWithoutResidentInput
+  connect: AddressWhereUniqueInput
+}
+
+input AddressCreateWithoutResidentInput {
+  streetAddress: String!
+  city: String!
+  province: String!
+  postalCode: String!
+  country: String!
+}
+
+type AddressEdge {
+  node: Address!
+  cursor: String!
+}
+
+enum AddressOrderByInput {
+  id_ASC
+  id_DESC
+  streetAddress_ASC
+  streetAddress_DESC
+  city_ASC
+  city_DESC
+  province_ASC
+  province_DESC
+  postalCode_ASC
+  postalCode_DESC
+  country_ASC
+  country_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type AddressPreviousValues {
+  id: ID!
+  streetAddress: String!
+  city: String!
+  province: String!
+  postalCode: String!
+  country: String!
+}
+
+type AddressSubscriptionPayload {
+  mutation: MutationType!
+  node: Address
+  updatedFields: [String!]
+  previousValues: AddressPreviousValues
+}
+
+input AddressSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AddressWhereInput
+  AND: [AddressSubscriptionWhereInput!]
+  OR: [AddressSubscriptionWhereInput!]
+  NOT: [AddressSubscriptionWhereInput!]
+}
+
+input AddressUpdateInput {
+  streetAddress: String
+  city: String
+  province: String
+  postalCode: String
+  country: String
+  resident: ProfileUpdateOneRequiredWithoutAddressInput
+}
+
+input AddressUpdateManyMutationInput {
+  streetAddress: String
+  city: String
+  province: String
+  postalCode: String
+  country: String
+}
+
+input AddressUpdateOneWithoutResidentInput {
+  create: AddressCreateWithoutResidentInput
+  update: AddressUpdateWithoutResidentDataInput
+  upsert: AddressUpsertWithoutResidentInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: AddressWhereUniqueInput
+}
+
+input AddressUpdateWithoutResidentDataInput {
+  streetAddress: String
+  city: String
+  province: String
+  postalCode: String
+  country: String
+}
+
+input AddressUpsertWithoutResidentInput {
+  update: AddressUpdateWithoutResidentDataInput!
+  create: AddressCreateWithoutResidentInput!
+}
+
+input AddressWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  streetAddress: String
+  streetAddress_not: String
+  streetAddress_in: [String!]
+  streetAddress_not_in: [String!]
+  streetAddress_lt: String
+  streetAddress_lte: String
+  streetAddress_gt: String
+  streetAddress_gte: String
+  streetAddress_contains: String
+  streetAddress_not_contains: String
+  streetAddress_starts_with: String
+  streetAddress_not_starts_with: String
+  streetAddress_ends_with: String
+  streetAddress_not_ends_with: String
+  city: String
+  city_not: String
+  city_in: [String!]
+  city_not_in: [String!]
+  city_lt: String
+  city_lte: String
+  city_gt: String
+  city_gte: String
+  city_contains: String
+  city_not_contains: String
+  city_starts_with: String
+  city_not_starts_with: String
+  city_ends_with: String
+  city_not_ends_with: String
+  province: String
+  province_not: String
+  province_in: [String!]
+  province_not_in: [String!]
+  province_lt: String
+  province_lte: String
+  province_gt: String
+  province_gte: String
+  province_contains: String
+  province_not_contains: String
+  province_starts_with: String
+  province_not_starts_with: String
+  province_ends_with: String
+  province_not_ends_with: String
+  postalCode: String
+  postalCode_not: String
+  postalCode_in: [String!]
+  postalCode_not_in: [String!]
+  postalCode_lt: String
+  postalCode_lte: String
+  postalCode_gt: String
+  postalCode_gte: String
+  postalCode_contains: String
+  postalCode_not_contains: String
+  postalCode_starts_with: String
+  postalCode_not_starts_with: String
+  postalCode_ends_with: String
+  postalCode_not_ends_with: String
+  country: String
+  country_not: String
+  country_in: [String!]
+  country_not_in: [String!]
+  country_lt: String
+  country_lte: String
+  country_gt: String
+  country_gte: String
+  country_contains: String
+  country_not_contains: String
+  country_starts_with: String
+  country_not_starts_with: String
+  country_ends_with: String
+  country_not_ends_with: String
+  resident: ProfileWhereInput
+  AND: [AddressWhereInput!]
+  OR: [AddressWhereInput!]
+  NOT: [AddressWhereInput!]
+}
+
+input AddressWhereUniqueInput {
+  id: ID
+}
+
+type AggregateAddress {
+  count: Int!
+}
+
+type AggregateOrganization {
+  count: Int!
+}
+
+type AggregateProfile {
+  count: Int!
+}
+
+type AggregateTeam {
+  count: Int!
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+scalar Long
+
+type Mutation {
+  createAddress(data: AddressCreateInput!): Address!
+  updateAddress(data: AddressUpdateInput!, where: AddressWhereUniqueInput!): Address
+  updateManyAddresses(data: AddressUpdateManyMutationInput!, where: AddressWhereInput): BatchPayload!
+  upsertAddress(where: AddressWhereUniqueInput!, create: AddressCreateInput!, update: AddressUpdateInput!): Address!
+  deleteAddress(where: AddressWhereUniqueInput!): Address
+  deleteManyAddresses(where: AddressWhereInput): BatchPayload!
+  createOrganization(data: OrganizationCreateInput!): Organization!
+  updateOrganization(data: OrganizationUpdateInput!, where: OrganizationWhereUniqueInput!): Organization
+  updateManyOrganizations(data: OrganizationUpdateManyMutationInput!, where: OrganizationWhereInput): BatchPayload!
+  upsertOrganization(where: OrganizationWhereUniqueInput!, create: OrganizationCreateInput!, update: OrganizationUpdateInput!): Organization!
+  deleteOrganization(where: OrganizationWhereUniqueInput!): Organization
+  deleteManyOrganizations(where: OrganizationWhereInput): BatchPayload!
+  createProfile(data: ProfileCreateInput!): Profile!
+  updateProfile(data: ProfileUpdateInput!, where: ProfileWhereUniqueInput!): Profile
+  updateManyProfiles(data: ProfileUpdateManyMutationInput!, where: ProfileWhereInput): BatchPayload!
+  upsertProfile(where: ProfileWhereUniqueInput!, create: ProfileCreateInput!, update: ProfileUpdateInput!): Profile!
+  deleteProfile(where: ProfileWhereUniqueInput!): Profile
+  deleteManyProfiles(where: ProfileWhereInput): BatchPayload!
+  createTeam(data: TeamCreateInput!): Team!
+  updateTeam(data: TeamUpdateInput!, where: TeamWhereUniqueInput!): Team
+  updateManyTeams(data: TeamUpdateManyMutationInput!, where: TeamWhereInput): BatchPayload!
+  upsertTeam(where: TeamWhereUniqueInput!, create: TeamCreateInput!, update: TeamUpdateInput!): Team!
+  deleteTeam(where: TeamWhereUniqueInput!): Team
+  deleteManyTeams(where: TeamWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type Organization {
+  id: ID!
+  nameEn: String!
+  nameFr: String!
+  acronymEn: String!
+  acronymFr: String!
+  teams(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Team!]
+}
+
+type OrganizationConnection {
+  pageInfo: PageInfo!
+  edges: [OrganizationEdge]!
+  aggregate: AggregateOrganization!
+}
+
+input OrganizationCreateInput {
+  nameEn: String!
+  nameFr: String!
+  acronymEn: String!
+  acronymFr: String!
+  teams: TeamCreateManyWithoutOrganizationInput
+}
+
+input OrganizationCreateOneWithoutTeamsInput {
+  create: OrganizationCreateWithoutTeamsInput
+  connect: OrganizationWhereUniqueInput
+}
+
+input OrganizationCreateWithoutTeamsInput {
+  nameEn: String!
+  nameFr: String!
+  acronymEn: String!
+  acronymFr: String!
+}
+
+type OrganizationEdge {
+  node: Organization!
+  cursor: String!
+}
+
+enum OrganizationOrderByInput {
+  id_ASC
+  id_DESC
+  nameEn_ASC
+  nameEn_DESC
+  nameFr_ASC
+  nameFr_DESC
+  acronymEn_ASC
+  acronymEn_DESC
+  acronymFr_ASC
+  acronymFr_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type OrganizationPreviousValues {
+  id: ID!
+  nameEn: String!
+  nameFr: String!
+  acronymEn: String!
+  acronymFr: String!
+}
+
+type OrganizationSubscriptionPayload {
+  mutation: MutationType!
+  node: Organization
+  updatedFields: [String!]
+  previousValues: OrganizationPreviousValues
+}
+
+input OrganizationSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: OrganizationWhereInput
+  AND: [OrganizationSubscriptionWhereInput!]
+  OR: [OrganizationSubscriptionWhereInput!]
+  NOT: [OrganizationSubscriptionWhereInput!]
+}
+
+input OrganizationUpdateInput {
+  nameEn: String
+  nameFr: String
+  acronymEn: String
+  acronymFr: String
+  teams: TeamUpdateManyWithoutOrganizationInput
+}
+
+input OrganizationUpdateManyMutationInput {
+  nameEn: String
+  nameFr: String
+  acronymEn: String
+  acronymFr: String
+}
+
+input OrganizationUpdateOneRequiredWithoutTeamsInput {
+  create: OrganizationCreateWithoutTeamsInput
+  update: OrganizationUpdateWithoutTeamsDataInput
+  upsert: OrganizationUpsertWithoutTeamsInput
+  connect: OrganizationWhereUniqueInput
+}
+
+input OrganizationUpdateWithoutTeamsDataInput {
+  nameEn: String
+  nameFr: String
+  acronymEn: String
+  acronymFr: String
+}
+
+input OrganizationUpsertWithoutTeamsInput {
+  update: OrganizationUpdateWithoutTeamsDataInput!
+  create: OrganizationCreateWithoutTeamsInput!
+}
+
+input OrganizationWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  nameEn: String
+  nameEn_not: String
+  nameEn_in: [String!]
+  nameEn_not_in: [String!]
+  nameEn_lt: String
+  nameEn_lte: String
+  nameEn_gt: String
+  nameEn_gte: String
+  nameEn_contains: String
+  nameEn_not_contains: String
+  nameEn_starts_with: String
+  nameEn_not_starts_with: String
+  nameEn_ends_with: String
+  nameEn_not_ends_with: String
+  nameFr: String
+  nameFr_not: String
+  nameFr_in: [String!]
+  nameFr_not_in: [String!]
+  nameFr_lt: String
+  nameFr_lte: String
+  nameFr_gt: String
+  nameFr_gte: String
+  nameFr_contains: String
+  nameFr_not_contains: String
+  nameFr_starts_with: String
+  nameFr_not_starts_with: String
+  nameFr_ends_with: String
+  nameFr_not_ends_with: String
+  acronymEn: String
+  acronymEn_not: String
+  acronymEn_in: [String!]
+  acronymEn_not_in: [String!]
+  acronymEn_lt: String
+  acronymEn_lte: String
+  acronymEn_gt: String
+  acronymEn_gte: String
+  acronymEn_contains: String
+  acronymEn_not_contains: String
+  acronymEn_starts_with: String
+  acronymEn_not_starts_with: String
+  acronymEn_ends_with: String
+  acronymEn_not_ends_with: String
+  acronymFr: String
+  acronymFr_not: String
+  acronymFr_in: [String!]
+  acronymFr_not_in: [String!]
+  acronymFr_lt: String
+  acronymFr_lte: String
+  acronymFr_gt: String
+  acronymFr_gte: String
+  acronymFr_contains: String
+  acronymFr_not_contains: String
+  acronymFr_starts_with: String
+  acronymFr_not_starts_with: String
+  acronymFr_ends_with: String
+  acronymFr_not_ends_with: String
+  teams_every: TeamWhereInput
+  teams_some: TeamWhereInput
+  teams_none: TeamWhereInput
+  AND: [OrganizationWhereInput!]
+  OR: [OrganizationWhereInput!]
+  NOT: [OrganizationWhereInput!]
+}
+
+input OrganizationWhereUniqueInput {
+  id: ID
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Profile {
+  id: ID!
+  gcID: String!
+  name: String!
+  email: String!
+  avatar: String
+  mobilePhone: String
+  officePhone: String
+  address: Address
+  titleEn: String
+  titleFr: String
+  supervisor: Profile
+  team: Team
+  ownerofTeams(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Team!]
+}
+
+type ProfileConnection {
+  pageInfo: PageInfo!
+  edges: [ProfileEdge]!
+  aggregate: AggregateProfile!
+}
+
+input ProfileCreateInput {
+  gcID: String!
+  name: String!
+  email: String!
+  avatar: String
+  mobilePhone: String
+  officePhone: String
+  address: AddressCreateOneWithoutResidentInput
+  titleEn: String
+  titleFr: String
+  supervisor: ProfileCreateOneWithoutSupervisorInput
+  team: TeamCreateOneWithoutMembersInput
+  ownerofTeams: TeamCreateManyWithoutOwnerInput
+}
+
+input ProfileCreateManyWithoutTeamInput {
+  create: [ProfileCreateWithoutTeamInput!]
+  connect: [ProfileWhereUniqueInput!]
+}
+
+input ProfileCreateOneWithoutAddressInput {
+  create: ProfileCreateWithoutAddressInput
+  connect: ProfileWhereUniqueInput
+}
+
+input ProfileCreateOneWithoutOwnerofTeamsInput {
+  create: ProfileCreateWithoutOwnerofTeamsInput
+  connect: ProfileWhereUniqueInput
+}
+
+input ProfileCreateOneWithoutSupervisorInput {
+  create: ProfileCreateWithoutSupervisorInput
+  connect: ProfileWhereUniqueInput
+}
+
+input ProfileCreateWithoutAddressInput {
+  gcID: String!
+  name: String!
+  email: String!
+  avatar: String
+  mobilePhone: String
+  officePhone: String
+  titleEn: String
+  titleFr: String
+  supervisor: ProfileCreateOneWithoutSupervisorInput
+  team: TeamCreateOneWithoutMembersInput
+  ownerofTeams: TeamCreateManyWithoutOwnerInput
+}
+
+input ProfileCreateWithoutOwnerofTeamsInput {
+  gcID: String!
+  name: String!
+  email: String!
+  avatar: String
+  mobilePhone: String
+  officePhone: String
+  address: AddressCreateOneWithoutResidentInput
+  titleEn: String
+  titleFr: String
+  supervisor: ProfileCreateOneWithoutSupervisorInput
+  team: TeamCreateOneWithoutMembersInput
+}
+
+input ProfileCreateWithoutSupervisorInput {
+  gcID: String!
+  name: String!
+  email: String!
+  avatar: String
+  mobilePhone: String
+  officePhone: String
+  address: AddressCreateOneWithoutResidentInput
+  titleEn: String
+  titleFr: String
+  team: TeamCreateOneWithoutMembersInput
+  ownerofTeams: TeamCreateManyWithoutOwnerInput
+}
+
+input ProfileCreateWithoutTeamInput {
+  gcID: String!
+  name: String!
+  email: String!
+  avatar: String
+  mobilePhone: String
+  officePhone: String
+  address: AddressCreateOneWithoutResidentInput
+  titleEn: String
+  titleFr: String
+  supervisor: ProfileCreateOneWithoutSupervisorInput
+  ownerofTeams: TeamCreateManyWithoutOwnerInput
+}
+
+type ProfileEdge {
+  node: Profile!
+  cursor: String!
+}
+
+enum ProfileOrderByInput {
+  id_ASC
+  id_DESC
+  gcID_ASC
+  gcID_DESC
+  name_ASC
+  name_DESC
+  email_ASC
+  email_DESC
+  avatar_ASC
+  avatar_DESC
+  mobilePhone_ASC
+  mobilePhone_DESC
+  officePhone_ASC
+  officePhone_DESC
+  titleEn_ASC
+  titleEn_DESC
+  titleFr_ASC
+  titleFr_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type ProfilePreviousValues {
+  id: ID!
+  gcID: String!
+  name: String!
+  email: String!
+  avatar: String
+  mobilePhone: String
+  officePhone: String
+  titleEn: String
+  titleFr: String
+}
+
+input ProfileScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  gcID: String
+  gcID_not: String
+  gcID_in: [String!]
+  gcID_not_in: [String!]
+  gcID_lt: String
+  gcID_lte: String
+  gcID_gt: String
+  gcID_gte: String
+  gcID_contains: String
+  gcID_not_contains: String
+  gcID_starts_with: String
+  gcID_not_starts_with: String
+  gcID_ends_with: String
+  gcID_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  avatar: String
+  avatar_not: String
+  avatar_in: [String!]
+  avatar_not_in: [String!]
+  avatar_lt: String
+  avatar_lte: String
+  avatar_gt: String
+  avatar_gte: String
+  avatar_contains: String
+  avatar_not_contains: String
+  avatar_starts_with: String
+  avatar_not_starts_with: String
+  avatar_ends_with: String
+  avatar_not_ends_with: String
+  mobilePhone: String
+  mobilePhone_not: String
+  mobilePhone_in: [String!]
+  mobilePhone_not_in: [String!]
+  mobilePhone_lt: String
+  mobilePhone_lte: String
+  mobilePhone_gt: String
+  mobilePhone_gte: String
+  mobilePhone_contains: String
+  mobilePhone_not_contains: String
+  mobilePhone_starts_with: String
+  mobilePhone_not_starts_with: String
+  mobilePhone_ends_with: String
+  mobilePhone_not_ends_with: String
+  officePhone: String
+  officePhone_not: String
+  officePhone_in: [String!]
+  officePhone_not_in: [String!]
+  officePhone_lt: String
+  officePhone_lte: String
+  officePhone_gt: String
+  officePhone_gte: String
+  officePhone_contains: String
+  officePhone_not_contains: String
+  officePhone_starts_with: String
+  officePhone_not_starts_with: String
+  officePhone_ends_with: String
+  officePhone_not_ends_with: String
+  titleEn: String
+  titleEn_not: String
+  titleEn_in: [String!]
+  titleEn_not_in: [String!]
+  titleEn_lt: String
+  titleEn_lte: String
+  titleEn_gt: String
+  titleEn_gte: String
+  titleEn_contains: String
+  titleEn_not_contains: String
+  titleEn_starts_with: String
+  titleEn_not_starts_with: String
+  titleEn_ends_with: String
+  titleEn_not_ends_with: String
+  titleFr: String
+  titleFr_not: String
+  titleFr_in: [String!]
+  titleFr_not_in: [String!]
+  titleFr_lt: String
+  titleFr_lte: String
+  titleFr_gt: String
+  titleFr_gte: String
+  titleFr_contains: String
+  titleFr_not_contains: String
+  titleFr_starts_with: String
+  titleFr_not_starts_with: String
+  titleFr_ends_with: String
+  titleFr_not_ends_with: String
+  AND: [ProfileScalarWhereInput!]
+  OR: [ProfileScalarWhereInput!]
+  NOT: [ProfileScalarWhereInput!]
+}
+
+type ProfileSubscriptionPayload {
+  mutation: MutationType!
+  node: Profile
+  updatedFields: [String!]
+  previousValues: ProfilePreviousValues
+}
+
+input ProfileSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ProfileWhereInput
+  AND: [ProfileSubscriptionWhereInput!]
+  OR: [ProfileSubscriptionWhereInput!]
+  NOT: [ProfileSubscriptionWhereInput!]
+}
+
+input ProfileUpdateInput {
+  gcID: String
+  name: String
+  email: String
+  avatar: String
+  mobilePhone: String
+  officePhone: String
+  address: AddressUpdateOneWithoutResidentInput
+  titleEn: String
+  titleFr: String
+  supervisor: ProfileUpdateOneWithoutSupervisorInput
+  team: TeamUpdateOneWithoutMembersInput
+  ownerofTeams: TeamUpdateManyWithoutOwnerInput
+}
+
+input ProfileUpdateManyDataInput {
+  gcID: String
+  name: String
+  email: String
+  avatar: String
+  mobilePhone: String
+  officePhone: String
+  titleEn: String
+  titleFr: String
+}
+
+input ProfileUpdateManyMutationInput {
+  gcID: String
+  name: String
+  email: String
+  avatar: String
+  mobilePhone: String
+  officePhone: String
+  titleEn: String
+  titleFr: String
+}
+
+input ProfileUpdateManyWithoutTeamInput {
+  create: [ProfileCreateWithoutTeamInput!]
+  delete: [ProfileWhereUniqueInput!]
+  connect: [ProfileWhereUniqueInput!]
+  disconnect: [ProfileWhereUniqueInput!]
+  update: [ProfileUpdateWithWhereUniqueWithoutTeamInput!]
+  upsert: [ProfileUpsertWithWhereUniqueWithoutTeamInput!]
+  deleteMany: [ProfileScalarWhereInput!]
+  updateMany: [ProfileUpdateManyWithWhereNestedInput!]
+}
+
+input ProfileUpdateManyWithWhereNestedInput {
+  where: ProfileScalarWhereInput!
+  data: ProfileUpdateManyDataInput!
+}
+
+input ProfileUpdateOneRequiredWithoutAddressInput {
+  create: ProfileCreateWithoutAddressInput
+  update: ProfileUpdateWithoutAddressDataInput
+  upsert: ProfileUpsertWithoutAddressInput
+  connect: ProfileWhereUniqueInput
+}
+
+input ProfileUpdateOneWithoutOwnerofTeamsInput {
+  create: ProfileCreateWithoutOwnerofTeamsInput
+  update: ProfileUpdateWithoutOwnerofTeamsDataInput
+  upsert: ProfileUpsertWithoutOwnerofTeamsInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: ProfileWhereUniqueInput
+}
+
+input ProfileUpdateOneWithoutSupervisorInput {
+  create: ProfileCreateWithoutSupervisorInput
+  update: ProfileUpdateWithoutSupervisorDataInput
+  upsert: ProfileUpsertWithoutSupervisorInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: ProfileWhereUniqueInput
+}
+
+input ProfileUpdateWithoutAddressDataInput {
+  gcID: String
+  name: String
+  email: String
+  avatar: String
+  mobilePhone: String
+  officePhone: String
+  titleEn: String
+  titleFr: String
+  supervisor: ProfileUpdateOneWithoutSupervisorInput
+  team: TeamUpdateOneWithoutMembersInput
+  ownerofTeams: TeamUpdateManyWithoutOwnerInput
+}
+
+input ProfileUpdateWithoutOwnerofTeamsDataInput {
+  gcID: String
+  name: String
+  email: String
+  avatar: String
+  mobilePhone: String
+  officePhone: String
+  address: AddressUpdateOneWithoutResidentInput
+  titleEn: String
+  titleFr: String
+  supervisor: ProfileUpdateOneWithoutSupervisorInput
+  team: TeamUpdateOneWithoutMembersInput
+}
+
+input ProfileUpdateWithoutSupervisorDataInput {
+  gcID: String
+  name: String
+  email: String
+  avatar: String
+  mobilePhone: String
+  officePhone: String
+  address: AddressUpdateOneWithoutResidentInput
+  titleEn: String
+  titleFr: String
+  team: TeamUpdateOneWithoutMembersInput
+  ownerofTeams: TeamUpdateManyWithoutOwnerInput
+}
+
+input ProfileUpdateWithoutTeamDataInput {
+  gcID: String
+  name: String
+  email: String
+  avatar: String
+  mobilePhone: String
+  officePhone: String
+  address: AddressUpdateOneWithoutResidentInput
+  titleEn: String
+  titleFr: String
+  supervisor: ProfileUpdateOneWithoutSupervisorInput
+  ownerofTeams: TeamUpdateManyWithoutOwnerInput
+}
+
+input ProfileUpdateWithWhereUniqueWithoutTeamInput {
+  where: ProfileWhereUniqueInput!
+  data: ProfileUpdateWithoutTeamDataInput!
+}
+
+input ProfileUpsertWithoutAddressInput {
+  update: ProfileUpdateWithoutAddressDataInput!
+  create: ProfileCreateWithoutAddressInput!
+}
+
+input ProfileUpsertWithoutOwnerofTeamsInput {
+  update: ProfileUpdateWithoutOwnerofTeamsDataInput!
+  create: ProfileCreateWithoutOwnerofTeamsInput!
+}
+
+input ProfileUpsertWithoutSupervisorInput {
+  update: ProfileUpdateWithoutSupervisorDataInput!
+  create: ProfileCreateWithoutSupervisorInput!
+}
+
+input ProfileUpsertWithWhereUniqueWithoutTeamInput {
+  where: ProfileWhereUniqueInput!
+  update: ProfileUpdateWithoutTeamDataInput!
+  create: ProfileCreateWithoutTeamInput!
+}
+
+input ProfileWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  gcID: String
+  gcID_not: String
+  gcID_in: [String!]
+  gcID_not_in: [String!]
+  gcID_lt: String
+  gcID_lte: String
+  gcID_gt: String
+  gcID_gte: String
+  gcID_contains: String
+  gcID_not_contains: String
+  gcID_starts_with: String
+  gcID_not_starts_with: String
+  gcID_ends_with: String
+  gcID_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  avatar: String
+  avatar_not: String
+  avatar_in: [String!]
+  avatar_not_in: [String!]
+  avatar_lt: String
+  avatar_lte: String
+  avatar_gt: String
+  avatar_gte: String
+  avatar_contains: String
+  avatar_not_contains: String
+  avatar_starts_with: String
+  avatar_not_starts_with: String
+  avatar_ends_with: String
+  avatar_not_ends_with: String
+  mobilePhone: String
+  mobilePhone_not: String
+  mobilePhone_in: [String!]
+  mobilePhone_not_in: [String!]
+  mobilePhone_lt: String
+  mobilePhone_lte: String
+  mobilePhone_gt: String
+  mobilePhone_gte: String
+  mobilePhone_contains: String
+  mobilePhone_not_contains: String
+  mobilePhone_starts_with: String
+  mobilePhone_not_starts_with: String
+  mobilePhone_ends_with: String
+  mobilePhone_not_ends_with: String
+  officePhone: String
+  officePhone_not: String
+  officePhone_in: [String!]
+  officePhone_not_in: [String!]
+  officePhone_lt: String
+  officePhone_lte: String
+  officePhone_gt: String
+  officePhone_gte: String
+  officePhone_contains: String
+  officePhone_not_contains: String
+  officePhone_starts_with: String
+  officePhone_not_starts_with: String
+  officePhone_ends_with: String
+  officePhone_not_ends_with: String
+  address: AddressWhereInput
+  titleEn: String
+  titleEn_not: String
+  titleEn_in: [String!]
+  titleEn_not_in: [String!]
+  titleEn_lt: String
+  titleEn_lte: String
+  titleEn_gt: String
+  titleEn_gte: String
+  titleEn_contains: String
+  titleEn_not_contains: String
+  titleEn_starts_with: String
+  titleEn_not_starts_with: String
+  titleEn_ends_with: String
+  titleEn_not_ends_with: String
+  titleFr: String
+  titleFr_not: String
+  titleFr_in: [String!]
+  titleFr_not_in: [String!]
+  titleFr_lt: String
+  titleFr_lte: String
+  titleFr_gt: String
+  titleFr_gte: String
+  titleFr_contains: String
+  titleFr_not_contains: String
+  titleFr_starts_with: String
+  titleFr_not_starts_with: String
+  titleFr_ends_with: String
+  titleFr_not_ends_with: String
+  supervisor: ProfileWhereInput
+  team: TeamWhereInput
+  ownerofTeams_every: TeamWhereInput
+  ownerofTeams_some: TeamWhereInput
+  ownerofTeams_none: TeamWhereInput
+  AND: [ProfileWhereInput!]
+  OR: [ProfileWhereInput!]
+  NOT: [ProfileWhereInput!]
+}
+
+input ProfileWhereUniqueInput {
+  id: ID
+  gcID: String
+  email: String
+}
+
+type Query {
+  address(where: AddressWhereUniqueInput!): Address
+  addresses(where: AddressWhereInput, orderBy: AddressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Address]!
+  addressesConnection(where: AddressWhereInput, orderBy: AddressOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AddressConnection!
+  organization(where: OrganizationWhereUniqueInput!): Organization
+  organizations(where: OrganizationWhereInput, orderBy: OrganizationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Organization]!
+  organizationsConnection(where: OrganizationWhereInput, orderBy: OrganizationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): OrganizationConnection!
+  profile(where: ProfileWhereUniqueInput!): Profile
+  profiles(where: ProfileWhereInput, orderBy: ProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Profile]!
+  profilesConnection(where: ProfileWhereInput, orderBy: ProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProfileConnection!
+  team(where: TeamWhereUniqueInput!): Team
+  teams(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Team]!
+  teamsConnection(where: TeamWhereInput, orderBy: TeamOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TeamConnection!
+  node(id: ID!): Node
+}
+
+type Subscription {
+  address(where: AddressSubscriptionWhereInput): AddressSubscriptionPayload
+  organization(where: OrganizationSubscriptionWhereInput): OrganizationSubscriptionPayload
+  profile(where: ProfileSubscriptionWhereInput): ProfileSubscriptionPayload
+  team(where: TeamSubscriptionWhereInput): TeamSubscriptionPayload
+}
+
+type Team {
+  id: ID!
+  nameEn: String!
+  nameFr: String!
+  organization: Organization!
+  owner: Profile
+  members(where: ProfileWhereInput, orderBy: ProfileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Profile!]
+}
+
+type TeamConnection {
+  pageInfo: PageInfo!
+  edges: [TeamEdge]!
+  aggregate: AggregateTeam!
+}
+
+input TeamCreateInput {
+  nameEn: String!
+  nameFr: String!
+  organization: OrganizationCreateOneWithoutTeamsInput!
+  owner: ProfileCreateOneWithoutOwnerofTeamsInput
+  members: ProfileCreateManyWithoutTeamInput
+}
+
+input TeamCreateManyWithoutOrganizationInput {
+  create: [TeamCreateWithoutOrganizationInput!]
+  connect: [TeamWhereUniqueInput!]
+}
+
+input TeamCreateManyWithoutOwnerInput {
+  create: [TeamCreateWithoutOwnerInput!]
+  connect: [TeamWhereUniqueInput!]
+}
+
+input TeamCreateOneWithoutMembersInput {
+  create: TeamCreateWithoutMembersInput
+  connect: TeamWhereUniqueInput
+}
+
+input TeamCreateWithoutMembersInput {
+  nameEn: String!
+  nameFr: String!
+  organization: OrganizationCreateOneWithoutTeamsInput!
+  owner: ProfileCreateOneWithoutOwnerofTeamsInput
+}
+
+input TeamCreateWithoutOrganizationInput {
+  nameEn: String!
+  nameFr: String!
+  owner: ProfileCreateOneWithoutOwnerofTeamsInput
+  members: ProfileCreateManyWithoutTeamInput
+}
+
+input TeamCreateWithoutOwnerInput {
+  nameEn: String!
+  nameFr: String!
+  organization: OrganizationCreateOneWithoutTeamsInput!
+  members: ProfileCreateManyWithoutTeamInput
+}
+
+type TeamEdge {
+  node: Team!
+  cursor: String!
+}
+
+enum TeamOrderByInput {
+  id_ASC
+  id_DESC
+  nameEn_ASC
+  nameEn_DESC
+  nameFr_ASC
+  nameFr_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type TeamPreviousValues {
+  id: ID!
+  nameEn: String!
+  nameFr: String!
+}
+
+input TeamScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  nameEn: String
+  nameEn_not: String
+  nameEn_in: [String!]
+  nameEn_not_in: [String!]
+  nameEn_lt: String
+  nameEn_lte: String
+  nameEn_gt: String
+  nameEn_gte: String
+  nameEn_contains: String
+  nameEn_not_contains: String
+  nameEn_starts_with: String
+  nameEn_not_starts_with: String
+  nameEn_ends_with: String
+  nameEn_not_ends_with: String
+  nameFr: String
+  nameFr_not: String
+  nameFr_in: [String!]
+  nameFr_not_in: [String!]
+  nameFr_lt: String
+  nameFr_lte: String
+  nameFr_gt: String
+  nameFr_gte: String
+  nameFr_contains: String
+  nameFr_not_contains: String
+  nameFr_starts_with: String
+  nameFr_not_starts_with: String
+  nameFr_ends_with: String
+  nameFr_not_ends_with: String
+  AND: [TeamScalarWhereInput!]
+  OR: [TeamScalarWhereInput!]
+  NOT: [TeamScalarWhereInput!]
+}
+
+type TeamSubscriptionPayload {
+  mutation: MutationType!
+  node: Team
+  updatedFields: [String!]
+  previousValues: TeamPreviousValues
+}
+
+input TeamSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TeamWhereInput
+  AND: [TeamSubscriptionWhereInput!]
+  OR: [TeamSubscriptionWhereInput!]
+  NOT: [TeamSubscriptionWhereInput!]
+}
+
+input TeamUpdateInput {
+  nameEn: String
+  nameFr: String
+  organization: OrganizationUpdateOneRequiredWithoutTeamsInput
+  owner: ProfileUpdateOneWithoutOwnerofTeamsInput
+  members: ProfileUpdateManyWithoutTeamInput
+}
+
+input TeamUpdateManyDataInput {
+  nameEn: String
+  nameFr: String
+}
+
+input TeamUpdateManyMutationInput {
+  nameEn: String
+  nameFr: String
+}
+
+input TeamUpdateManyWithoutOrganizationInput {
+  create: [TeamCreateWithoutOrganizationInput!]
+  delete: [TeamWhereUniqueInput!]
+  connect: [TeamWhereUniqueInput!]
+  disconnect: [TeamWhereUniqueInput!]
+  update: [TeamUpdateWithWhereUniqueWithoutOrganizationInput!]
+  upsert: [TeamUpsertWithWhereUniqueWithoutOrganizationInput!]
+  deleteMany: [TeamScalarWhereInput!]
+  updateMany: [TeamUpdateManyWithWhereNestedInput!]
+}
+
+input TeamUpdateManyWithoutOwnerInput {
+  create: [TeamCreateWithoutOwnerInput!]
+  delete: [TeamWhereUniqueInput!]
+  connect: [TeamWhereUniqueInput!]
+  disconnect: [TeamWhereUniqueInput!]
+  update: [TeamUpdateWithWhereUniqueWithoutOwnerInput!]
+  upsert: [TeamUpsertWithWhereUniqueWithoutOwnerInput!]
+  deleteMany: [TeamScalarWhereInput!]
+  updateMany: [TeamUpdateManyWithWhereNestedInput!]
+}
+
+input TeamUpdateManyWithWhereNestedInput {
+  where: TeamScalarWhereInput!
+  data: TeamUpdateManyDataInput!
+}
+
+input TeamUpdateOneWithoutMembersInput {
+  create: TeamCreateWithoutMembersInput
+  update: TeamUpdateWithoutMembersDataInput
+  upsert: TeamUpsertWithoutMembersInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: TeamWhereUniqueInput
+}
+
+input TeamUpdateWithoutMembersDataInput {
+  nameEn: String
+  nameFr: String
+  organization: OrganizationUpdateOneRequiredWithoutTeamsInput
+  owner: ProfileUpdateOneWithoutOwnerofTeamsInput
+}
+
+input TeamUpdateWithoutOrganizationDataInput {
+  nameEn: String
+  nameFr: String
+  owner: ProfileUpdateOneWithoutOwnerofTeamsInput
+  members: ProfileUpdateManyWithoutTeamInput
+}
+
+input TeamUpdateWithoutOwnerDataInput {
+  nameEn: String
+  nameFr: String
+  organization: OrganizationUpdateOneRequiredWithoutTeamsInput
+  members: ProfileUpdateManyWithoutTeamInput
+}
+
+input TeamUpdateWithWhereUniqueWithoutOrganizationInput {
+  where: TeamWhereUniqueInput!
+  data: TeamUpdateWithoutOrganizationDataInput!
+}
+
+input TeamUpdateWithWhereUniqueWithoutOwnerInput {
+  where: TeamWhereUniqueInput!
+  data: TeamUpdateWithoutOwnerDataInput!
+}
+
+input TeamUpsertWithoutMembersInput {
+  update: TeamUpdateWithoutMembersDataInput!
+  create: TeamCreateWithoutMembersInput!
+}
+
+input TeamUpsertWithWhereUniqueWithoutOrganizationInput {
+  where: TeamWhereUniqueInput!
+  update: TeamUpdateWithoutOrganizationDataInput!
+  create: TeamCreateWithoutOrganizationInput!
+}
+
+input TeamUpsertWithWhereUniqueWithoutOwnerInput {
+  where: TeamWhereUniqueInput!
+  update: TeamUpdateWithoutOwnerDataInput!
+  create: TeamCreateWithoutOwnerInput!
+}
+
+input TeamWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  nameEn: String
+  nameEn_not: String
+  nameEn_in: [String!]
+  nameEn_not_in: [String!]
+  nameEn_lt: String
+  nameEn_lte: String
+  nameEn_gt: String
+  nameEn_gte: String
+  nameEn_contains: String
+  nameEn_not_contains: String
+  nameEn_starts_with: String
+  nameEn_not_starts_with: String
+  nameEn_ends_with: String
+  nameEn_not_ends_with: String
+  nameFr: String
+  nameFr_not: String
+  nameFr_in: [String!]
+  nameFr_not_in: [String!]
+  nameFr_lt: String
+  nameFr_lte: String
+  nameFr_gt: String
+  nameFr_gte: String
+  nameFr_contains: String
+  nameFr_not_contains: String
+  nameFr_starts_with: String
+  nameFr_not_starts_with: String
+  nameFr_ends_with: String
+  nameFr_not_ends_with: String
+  organization: OrganizationWhereInput
+  owner: ProfileWhereInput
+  members_every: ProfileWhereInput
+  members_some: ProfileWhereInput
+  members_none: ProfileWhereInput
+  AND: [TeamWhereInput!]
+  OR: [TeamWhereInput!]
+  NOT: [TeamWhereInput!]
+}
+
+input TeamWhereUniqueInput {
+  id: ID
+}

@@ -1,0 +1,10 @@
+
+
+endpoint: http://${env:PRISMA_API_ENDPOINT}:4466
+datamodel: datamodel.graphql
+generate:
+  - generator: graphql-schema
+    output: ../src/generated/
+hooks:
+  post-deploy:
+    - prisma generate

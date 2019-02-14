@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Address field valdiation - city 1`] = `"Missing Fields Required"`;
+
+exports[`Address field valdiation - country 1`] = `"Missing Fields Required"`;
+
+exports[`Address field valdiation - postal code 1`] = `"Missing Fields Required"`;
+
+exports[`Address field valdiation - province 1`] = `"Missing Fields Required"`;
+
+exports[`Address field valdiation - streetAddress 1`] = `"Missing Fields Required"`;
+
+exports[`Non-existant profile for Modification 1`] = `"Profile does not exist"`;
+
+exports[`Non-existant team for Modifcation 1`] = `undefined`;

@@ -1,0 +1,52 @@
+{
+  "name": "profile_service",
+  "version": "1.0.0",
+  "main": "cluster.js",
+  "license": "AGPL-3.0-or-later",
+  "scripts": {
+    "start": "node src/cluster.js",
+    "dev": "node src/index.js",
+    "test": "jest --config ./jest.config.js",
+    "eslint": "eslint src/"
+  },
+  "dependencies": {
+    "@okgrow/graphql-scalars": "^0.4.2",
+    "cluster": "^0.7.7",
+    "dotenv": "^6.0.0",
+    "eslint": "^5.9.0",
+    "express-jwt": "^5.3.1",
+    "form-data": "^2.3.3",
+    "graphql": "^14.0.2",
+    "node-fetch": "^2.2.0",
+    "prisma": "^1.16.4",
+    "prisma-binding": "^2.1.5",
+    "request": "^2.88.0",
+    "sharp": "^0.21.0",
+    "shortid": "^2.2.14",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.2.0",
+    "dev": "^0.1.3",
+    "graphql-tester": "^0.0.5",
+    "istanbul": "^0.4.5",
+    "jest": "^23.6.0",
+    "jest-html-reporter": "^2.4.2",
+    "jest-junit": "^5.2.0",
+    "jslint": "^0.12.0",
+    "sinon": "^6.3.5",
+    "sinon-chai": "^3.2.0",
+    "ts-jest": "^23.10.4",
+    "upload": "^0.1.3"
+  }
+}

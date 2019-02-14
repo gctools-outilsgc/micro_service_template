@@ -1,0 +1,284 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create Organization 1`] = `
+Object {
+  "acronymEn": "OTEN",
+  "acronymFr": "OTFR",
+  "nameEn": "Organization Test EN",
+  "nameFr": "Organization Test FR",
+}
+`;
+
+exports[`Create a Team 1`] = `
+Object {
+  "nameEn": "Team Name EN",
+  "nameFr": "Team Name FR",
+  "organization": Object {
+    "nameEn": "Organization Test EN",
+  },
+  "owner": Object {
+    "email": "supervisor@somewhere.com",
+    "gcID": "0834haf",
+    "name": "Supervisor Test",
+  },
+}
+`;
+
+exports[`Create profile without avatar 1`] = `
+Object {
+  "address": Object {
+    "city": "somewhere",
+    "country": "Canada",
+    "postalCode": "H0H 0H0",
+    "province": "Ontario",
+    "streetAddress": "98 where",
+  },
+  "email": "awesome.user@somewhere.com",
+  "gcID": "kjsdf09iklasd",
+  "mobilePhone": "613-999-0897",
+  "name": "Awesome User",
+  "officePhone": "(879) 234-2341",
+  "supervisor": Object {
+    "email": "supervisor@somewhere.com",
+    "gcID": "0834haf",
+    "name": "Supervisor Test",
+  },
+  "team": Object {
+    "members": Array [
+      Object {
+        "email": "awesome.user@somewhere.com",
+        "gcID": "kjsdf09iklasd",
+        "name": "Awesome User",
+      },
+    ],
+    "nameEn": "Team Name EN",
+    "nameFr": "Team Name FR",
+    "organization": Object {
+      "acronymEn": "OTEN",
+      "acronymFr": "OTFR",
+      "nameEn": "Organization Test EN",
+      "nameFr": "Organization Test FR",
+    },
+    "owner": Object {
+      "email": "supervisor@somewhere.com",
+      "name": "Supervisor Test",
+    },
+  },
+  "titleEn": "Super Dave",
+  "titleFr": "Super Dave in French",
+}
+`;
+
+exports[`Delete Organization 1`] = `true`;
+
+exports[`Delete Organization that does not exist 1`] = `"Organization does not exist"`;
+
+exports[`Delete Profile 1`] = `true`;
+
+exports[`Delete Profile that doesn't exist 1`] = `"Profile does not exist"`;
+
+exports[`Delete Team 1`] = `true`;
+
+exports[`Delete Team that doesn't exist 1`] = `"Team does not exist"`;
+
+exports[`Modify Organization 1`] = `
+Object {
+  "acronymEn": "OTEN - Mod 1",
+  "acronymFr": "OTFR - Mod 1",
+  "nameEn": "Organization Test EN - Mod 1",
+  "nameFr": "Organization Test FR - Mod 1",
+}
+`;
+
+exports[`Modify Profile 1`] = `
+Object {
+  "address": Object {
+    "city": "Vallhala",
+    "country": "Greece",
+    "postalCode": "Z9P 8A0",
+    "province": "Crete",
+    "streetAddress": "101 Kratos",
+  },
+  "email": "kratos@somewhere.com",
+  "gcID": "kjsdf09iklasd",
+  "mobilePhone": "819-234-6345",
+  "name": "Kratos",
+  "officePhone": "(613) 295-9093",
+  "supervisor": Object {
+    "email": "supervisor2@somewhere.com",
+    "gcID": "9283982",
+    "name": "Supervisor Test 2",
+  },
+  "team": Object {
+    "members": Array [
+      Object {
+        "email": "kratos@somewhere.com",
+        "gcID": "kjsdf09iklasd",
+        "name": "Kratos",
+      },
+    ],
+    "nameEn": "Team Name EN - Mod 1",
+    "nameFr": "Team Name FR - Mod 1",
+    "organization": Object {
+      "acronymEn": "OTEN 2",
+      "acronymFr": "OTFR 2",
+      "nameEn": "Organization Test EN 2",
+      "nameFr": "Organization Test FR 2",
+    },
+    "owner": Object {
+      "email": "supervisor2@somewhere.com",
+      "name": "Supervisor Test 2",
+    },
+  },
+  "titleEn": "God of War",
+  "titleFr": "Dieu de la guerre",
+}
+`;
+
+exports[`Modify Profile without existing Address 1`] = `
+Object {
+  "address": Object {
+    "city": "Moncton",
+    "country": "Canada",
+    "postalCode": "F3S 6D3",
+    "province": "New Brunswick",
+    "streetAddress": "322 Princess Way",
+  },
+  "email": "cameraman@somewhere.com",
+  "gcID": "3948371",
+  "name": "Camera Man",
+}
+`;
+
+exports[`Modify Team 1`] = `
+Object {
+  "nameEn": "Team Name EN - Mod 1",
+  "nameFr": "Team Name FR - Mod 1",
+  "organization": Object {
+    "nameEn": "Organization Test EN 2",
+  },
+  "owner": Object {
+    "email": "supervisor2@somewhere.com",
+    "gcID": "9283982",
+    "name": "Supervisor Test 2",
+  },
+}
+`;
+
+exports[`Query Addresses 1`] = `
+Array [
+  Object {
+    "city": "Vallhala",
+    "country": "Greece",
+    "postalCode": "Z9P 8A0",
+    "province": "Crete",
+    "resident": Object {
+      "email": "kratos@somewhere.com",
+      "gcID": "kjsdf09iklasd",
+      "name": "Kratos",
+    },
+    "streetAddress": "101 Kratos",
+  },
+  Object {
+    "city": "Moncton",
+    "country": "Canada",
+    "postalCode": "F3S 6D3",
+    "province": "New Brunswick",
+    "resident": Object {
+      "email": "cameraman@somewhere.com",
+      "gcID": "3948371",
+      "name": "Camera Man",
+    },
+    "streetAddress": "322 Princess Way",
+  },
+]
+`;
+
+exports[`Query Profiles 1`] = `
+Array [
+  Object {
+    "address": null,
+    "email": "supervisor@somewhere.com",
+    "gcID": "0834haf",
+    "mobilePhone": null,
+    "name": "Supervisor Test",
+    "officePhone": null,
+    "supervisor": null,
+    "team": null,
+    "titleEn": null,
+    "titleFr": null,
+  },
+  Object {
+    "address": Object {
+      "city": "Vallhala",
+      "country": "Greece",
+      "postalCode": "Z9P 8A0",
+      "province": "Crete",
+      "streetAddress": "101 Kratos",
+    },
+    "email": "kratos@somewhere.com",
+    "gcID": "kjsdf09iklasd",
+    "mobilePhone": "819-234-6345",
+    "name": "Kratos",
+    "officePhone": "(613) 295-9093",
+    "supervisor": Object {
+      "email": "supervisor2@somewhere.com",
+      "gcID": "9283982",
+      "name": "Supervisor Test 2",
+    },
+    "team": Object {
+      "members": Array [
+        Object {
+          "email": "kratos@somewhere.com",
+          "gcID": "kjsdf09iklasd",
+          "name": "Kratos",
+        },
+      ],
+      "nameEn": "Team Name EN - Mod 1",
+      "nameFr": "Team Name FR - Mod 1",
+      "organization": Object {
+        "acronymEn": "OTEN 2",
+        "acronymFr": "OTFR 2",
+        "nameEn": "Organization Test EN 2",
+        "nameFr": "Organization Test FR 2",
+      },
+      "owner": Object {
+        "email": "supervisor2@somewhere.com",
+        "name": "Supervisor Test 2",
+      },
+    },
+    "titleEn": "God of War",
+    "titleFr": "Dieu de la guerre",
+  },
+  Object {
+    "address": null,
+    "email": "supervisor2@somewhere.com",
+    "gcID": "9283982",
+    "mobilePhone": null,
+    "name": "Supervisor Test 2",
+    "officePhone": null,
+    "supervisor": null,
+    "team": null,
+    "titleEn": null,
+    "titleFr": null,
+  },
+  Object {
+    "address": Object {
+      "city": "Moncton",
+      "country": "Canada",
+      "postalCode": "F3S 6D3",
+      "province": "New Brunswick",
+      "streetAddress": "322 Princess Way",
+    },
+    "email": "cameraman@somewhere.com",
+    "gcID": "3948371",
+    "mobilePhone": null,
+    "name": "Camera Man",
+    "officePhone": null,
+    "supervisor": null,
+    "team": null,
+    "titleEn": null,
+    "titleFr": null,
+  },
+]
+`;
