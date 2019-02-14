@@ -81,7 +81,9 @@ This is the heart of your micro service.  This section extends the data model th
     * These objects extend your Prisma object definitions.  Essentially they mimic the same data model but provide the ability to hide fields that should never be visible outside of your micro service.
     * Input types enable the ability to accept data for your Mutations types.
 * Define your Queries in `{project root}/src/resolvers/Query.js`
-  * 
+  * This is where the micro service handles the graphQL query requests that it receives and fills those requests by calling the Prisma API.  See in line comments in the code itself for our example of a `profiles` query.
+* Define your Mutations in `{project root}/src/resolvers/Mutations.js`
+  * This is where the micro service handles the graphQL mutation requests that it receives and fulfills those requests by calling the Prisma API.  See in line comments in the code itself for our example of mutations that could be performed on a profile object. 
 
 #### Resources
 
