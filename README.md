@@ -1,5 +1,11 @@
 # GraphQL & Prisma Micro Service Template 
 
+## Solution Architecture
+
+This micro service template fits into a solution architecture that has an OpenID Connect provider and a Messaging Queue.  In the Open Accessible Digital Workspace (OADW) solution architecture these requirements are filled by using [Concierge](https://github.com/gctools-outilsgc/concierge) (GCaccount) and [RabbitMQ](https://www.rabbitmq.com/).  This template is used to create the various micro services within this architecture like the Profile as a Service, Collaboration Service, and Notification service mocked out below.
+
+![OADW Solution Architecture example](/home/bryan/Repos/microservice_template/example/OADW_Architecture-Walkthrough.png)
+
 ## Installation & Configuration
 
 This application/solution is built to be run in 2 different environments (Development / Production)

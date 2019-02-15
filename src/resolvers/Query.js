@@ -2,7 +2,8 @@ const {copyValueToObjectIfDefined} = require("./helper/objectHelper");
 const { addFragmentToInfo } = require("graphql-binding");
 
 // The profile fragment is required to ensure that all required fields
-// for auth directives are returned on every client request.
+// for the profile auth directives are returned on every client request.  See documentation
+// for greater explanation.
 const { profileFragment } = require("../Auth/Directives");
 
 // A sample query to return a profile based on input arguments
