@@ -13,21 +13,14 @@ const development = {
      host:"localhost",
      debug: true
  },
- image:{
-   url:"http://localhost:8007/backend.php",
-   format:"jpeg",
-   size:300
- },
  rabbitMQ:{
    host:"localhost"
  },
  openId:{
-   url:"http://localhost:8000"
- },
- client:{
+   url:"http://localhost:8000",
    id:clientId,
    secret:clientSecret
- }
+ },
 };
 
 const production = {
@@ -39,21 +32,14 @@ const production = {
      host: "prisma",
      debug: false
  },
- image:{
-  url:"http://image/backend.php",
-  format:"jpeg",
-  size:300
-},
 rabbitMQ:{
   host:"mq.gccollab.ca"
 },
 openId:{
-  url:"https://account.gccollab.ca"
-},
-client:{
+  url:"https://account.gccollab.ca",
   id:clientId,
   secret:clientSecret
-}
+},
 };
 
 const config = {

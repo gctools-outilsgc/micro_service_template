@@ -40,7 +40,7 @@ async function verifyToken(request){
   }
 
   //base64 encode client_id:client_secret for authorization
-  let auth = config.client.id + ":" + config.client.secret;
+  let auth = config.openId.id + ":" + config.openId.secret;
   let base64auth = Buffer.from(auth).toString("base64");
 
   const url = config.openId.url + "/openid/introspect";
