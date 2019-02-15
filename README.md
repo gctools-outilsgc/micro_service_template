@@ -4,7 +4,7 @@
 
 This micro service template fits into a solution architecture that has an OpenID Connect provider and a Messaging Queue.  In the Open Accessible Digital Workspace (OADW) solution architecture these requirements are filled by using [Concierge](https://github.com/gctools-outilsgc/concierge) (GCaccount) and [RabbitMQ](https://www.rabbitmq.com/).  This template is used to create the various micro services within this architecture like the Profile as a Service, Collaboration Service, and Notification service mocked out below.  In the `{project core}/examples` folder you will find some of the files that require modification for the setup of your micro service that include detailed examples.
 
-![OADW Solution Architecture example](/home/bryan/Repos/microservice_template/example/OADW_Architecture-Walkthrough.png)
+![OADW Solution Architecture example](./example/OADW_Architecture-Walkthrough.png)
 
 ## Installation & Configuration
 
