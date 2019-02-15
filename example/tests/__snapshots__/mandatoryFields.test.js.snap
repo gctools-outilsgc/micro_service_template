@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`create a basic profile with mandatory fields 1`] = `
+Object {
+  "email": "awesome.user@somewhere.com",
+  "gcID": "09ujilkjlkiid",
+  "name": "Awesome User",
+}
+`;
+
+exports[`fail profile creation due to missing email 1`] = `"Variable \\"$_v0_data\\" got invalid value { gcID: \\"09ujilkjlkiid\\", name: \\"Awesome User\\", email: undefined, mobilePhone: undefined, officePhone: undefined, titleEn: undefined, titleFr: undefined }; Field value.email of required type String! was not provided."`;
+
+exports[`fail profile creation due to missing gcID 1`] = `"Variable \\"$_v0_data\\" got invalid value { gcID: undefined, name: \\"Awesome User\\", email: \\"awesome.user@somewhere.com\\", mobilePhone: undefined, officePhone: undefined, titleEn: undefined, titleFr: undefined }; Field value.gcID of required type String! was not provided."`;
+
+exports[`fail profile creation due to missing name 1`] = `"Variable \\"$_v0_data\\" got invalid value { gcID: \\"09ujilkjlkiid\\", name: undefined, email: \\"awesome.user@somewhere.com\\", mobilePhone: undefined, officePhone: undefined, titleEn: undefined, titleFr: undefined }; Field value.name of required type String! was not provided."`;
