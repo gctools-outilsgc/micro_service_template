@@ -27,7 +27,7 @@ services:
       - postgres
 
   postgres:
-    image: postgres
+    image: postgres:10.6
     environment:
       POSTGRES_USER: prisma
       POSTGRES_PASSWORD: prisma
