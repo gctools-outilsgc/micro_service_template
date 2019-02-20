@@ -1,7 +1,7 @@
 version: '3'
 services:
   prisma:
-    image: prismagraphql/prisma:1.16
+    image: prismagraphql/prisma:1.26
     ports:
     - "4466:4466"
     environment:
@@ -23,6 +23,3 @@ services:
     environment:
       POSTGRES_USER: prisma
       POSTGRES_PASSWORD: prisma
-volumes:
-  postgres:
-  image_server:

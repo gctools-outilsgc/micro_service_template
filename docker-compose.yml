@@ -11,7 +11,7 @@ services:
     depends_on: 
       - prisma
   prisma:
-    image: prismagraphql/prisma:1.16
+    image: prismagraphql/prisma:1.26
     environment:
       PRISMA_CONFIG: |
         port: 4466

@@ -36,17 +36,17 @@
   "license": "AGPL-3.0-or-later",
   "dependencies": {
     "amqplib": "^0.5.3",
-    "apollo-server": "^2.3.1",
+    "apollo-server": "^2.4.2",
     "cluster": "^0.7.7",
     "codacy-coverage": "^3.4.0",
     "dotenv": "^6.2.0",
-    "eslint": "^5.10.0",
+    "eslint": "^5.14.1",
     "express-jwt": "^5.3.1",
-    "graphql": "^14.0.2",
+    "graphql": "^14.1.1",
     "graphql-binding": "^2.5.0",
     "node-fetch": "^2.3.0",
-    "prisma": "^1.24.0",
-    "prisma-binding": "^2.2.11",
+    "prisma": "^1.26.6",
+    "prisma-binding": "^2.3.3",
     "request": "^2.88.0",
     "shortid": "^2.2.14",
     "uuid": "^3.3.2"
@@ -54,7 +54,7 @@
   "devDependencies": {
     "babel-eslint": "^10.0.1",
     "jest": "^23.6.0",
-    "jest-html-reporter": "^2.4.2",
+    "jest-html-reporter": "^2.4.4",
     "ts-jest": "^23.10.5"
   }
 }
