@@ -1,5 +1,5 @@
 /*
-The introspection function takes the accesst token that is
+The introspection function takes the access token that is
 provided on an incoming request as an Auth Bearer token and
 verifies it against an OpenID provider to test validity.
 */

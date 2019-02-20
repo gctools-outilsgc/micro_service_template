@@ -16,37 +16,18 @@ const context = {
 async function msgHandler(msg, success) {
     const messageBody = JSON.parse(msg.content.toString());
     switch (msg.fields.routingKey){
-        case "user.new":
-            var args = {
-                gcID: messageBody.gcID,
-                name: messageBody.name,
-                email: messageBody.name
-            };
-            try {
-                await createProfile(null, args, context, "{gcID, name, email}");
-                success(true);
-            } catch(err){
-                if (err instanceof GraphQLError){
-                    let rejectMsg = {
-                        args,
-                        error: err
-                    };
-                    try{
-                        await publishMessageQueue("errors", "profile.creation", rejectMsg);
-                    } catch(err){
-                        // eslint-disable-next-line no-console
-                        console.error(err);
-                    }
-                    // The error has been handled and no longer need to be in queue
-                    success(true);
 
 
-                } else{
-                    // If it's not a GraphQL Error then requeue it.
-                    success(false);
-                }
-            }
-            break;
+
+
+        // List cases here for topic keys being listened to.
+        // see example folder for more details
+
+
+
+
+        
+        // A default case that handles errors and centralizes reporting
         default:
             let rejectMsg = {
                 msg: messageBody,

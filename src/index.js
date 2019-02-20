@@ -1,9 +1,7 @@
 const { ApolloServer, gql, makeExecutableSchema } = require("apollo-server");
 const { Prisma } = require("prisma-binding");
-const {EmailAddress, PostalCode} =  require("@okgrow/graphql-scalars");
 const Query = require("./resolvers/Query");
 const Mutation = require("./resolvers/Mutations");
-const {PhoneNumber} = require("./resolvers/Scalars");
 const config = require("./config");
 const AuthDirectives = require("./Auth/Directives");
 const fs = require("fs");
@@ -14,9 +12,6 @@ const introspect = require("./Auth/introspection");
 const resolvers = {
   Query,
   Mutation,
-  Email : EmailAddress,
-  PhoneNumber,
-  PostalCode
 };
 
 const typeDefs = gql`${fs.readFileSync(__dirname.concat("/schema.graphql"), "utf8")}`;
@@ -26,7 +21,8 @@ const schema = makeExecutableSchema({
   resolvers,
   schemaDirectives: {
     isAuthenticated: AuthDirectives.AuthenticatedDirective,
-    inOrganization: AuthDirectives.OrganizationDirective,
+    // list directives here.  Example:
+    // inOrganization: AuthDirectives.OrganizationDirective
   },
   resolverValidationOptions: {
     requireResolversForResolveType: false
@@ -54,8 +50,7 @@ server.listen().then(({ url }) => {
   console.info(`🚀 GraphQL Server ready at ${url}`);
 });
 
-// Lauch process to listen to service message queue
-
+// Launch process to listen to service message queue
 if (config.rabbitMQ.user && config.rabbitMQ.password){
   connectMessageQueueListener();
   connectMessageQueuePublisher();

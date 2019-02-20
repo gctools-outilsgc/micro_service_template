@@ -1,4 +1,3 @@
-# import Address from './generated/prisma.graphql'
 
 # The @isAuthenticated directive can be placed on the Query/Mutation, Object, and field level
 # The access token passed must be valid in order to proceed.
