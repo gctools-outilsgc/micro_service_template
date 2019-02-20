@@ -5,7 +5,7 @@ const amqp = require("amqplib/callback_api");
 var publisherConnection = null;
 var publishChannel = null;
 
-async function publishMessageQueue(exchange, key, rejectMsg){
+async function publishMessageQueue(exchange, key, message){
 
     var retryDelay = 5000;
 
@@ -25,7 +25,7 @@ async function publishMessageQueue(exchange, key, rejectMsg){
         }); 
     }
     try {
-        await publishChannel.publish(exchange, key, new Buffer(JSON.stringify(rejectMsg), {persistent:true}));
+        await publishChannel.publish(exchange, key, new Buffer(JSON.stringify(message), {persistent:true}));
     } catch(err){
         // eslint-disable-next-line no-console
         console.error("[SMQ] error", err);

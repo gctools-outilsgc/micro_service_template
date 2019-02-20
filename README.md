@@ -80,15 +80,34 @@ This is the heart of your micro service.  This section extends the data model th
 * Define your extended data model in `{project root}/src/schema.graphql`
   * Any models that need to be reused can be imported in their entirety by importing them from the generated Prisma file `# import Address from './generated/prisma.graphql'`.  Only import types where you want to expose all existing fields from the type through your micro service.  
   * Type Query
-    * Holds all your queries.  Ex. `type Query {profiles(id: ID, name: String): [Profile!]!, addresses(id: ID, streetAddress:String):[Address!]!}`
+
+    * Holds all your queries.  Ex.
+
+      ```js
+      type Query {
+      	profiles(id: ID, name: String): [Profile!]!,
+      	addresses(id: ID, streetAddress:String):[Address!]!
+      }
+      ```
+
+      
   * Type Mutation
-    * Holds all your mutations Ex. `type Mutation {createProfile(name: String!, email: String!):Profile!, modifyProfile(id: ID!, data:ModifyProfileInput):Profile!}`
+
+    * Holds all your mutations Ex.
+
+      ```js
+      type Mutation {
+      	createProfile(name: String!, email: String!):Profile!, 				modifyProfile(id: ID!, data:ModifyProfileInput):Profile!
+      }
+      ```
   * Custom object and input types
     * These objects extend your Prisma object definitions.  Essentially they mimic the same data model but provide the ability to hide fields that should never be visible outside of your micro service.
     * Input types enable the ability to accept data for your Mutations types.
 * Define your Queries in `{project root}/src/resolvers/Query.js`
+
   * This is where the micro service handles the graphQL query requests that it receives and fills those requests by calling the Prisma API.  See in line comments in the code itself for our example of a `profiles` query.
 * Define your Mutations in `{project root}/src/resolvers/Mutations.js`
+
   * This is where the micro service handles the graphQL mutation requests that it receives and fulfills those requests by calling the Prisma API.  See in line comments in the code itself for our example of mutations that could be performed on a profile object. 
 
 #### Resources
@@ -100,3 +119,66 @@ This is the heart of your micro service.  This section extends the data model th
 
 ### RabbitMQ connector
 
+RabbitMQ is leveraged in the solution architecture to handle event driven changes that need to be reflected across the environment.  For example when a user registers with GCaccount their profile information should be instantiated in the profile service so that when a user goes to log into their first application the basic profile data used during registration is already available.
+
+#### Getting Started
+
+* The various secrets (host, user, and password) for rabbitMQ are set in the `.env` and `./src/config.js` files. 
+
+* In `./src/Service_Mesh/listener_connector.js` an object exists at the top of the file `listenExchangesAndBindings` that takes an array of exchanges and topic keys your service should listen for.  For example in profile as a service we would want to listen to the account exchange for any new users.  This could be accomplished by inserting an object key with the following array: `account: ["user.new"]`.  A more complex service could be listening to multiple exchanges and the object would look more like: 
+
+  ```js
+  listenExchangesAndBindings = {
+  	account:["user.new", "user.delete"],
+  	profile:["organization.new", "team.new", "profile.new.supervisor"]
+  }
+  ```
+
+* to publish a message to an exchange import `connectMessageQueuePublisher` from `./Service_Mesh/publisher_connector`.  The function takes the following 3 arguments; exchange name, topic binding key, and the message to send.  Example:
+
+  ```js
+  try {
+  	await publishMessageQueue("errors", "profile.creation", rejectMsg);
+  } catch(err){
+  	console.error(err);
+  }
+  ```
+
+* The events that arrive through the listener are handled in `./src/Service_Mesh/hander.js`.  The `msgHandler` function accepts all in coming messages and matches the topic binding key in a switch case.  The triggered case then applies the appropriate logic that you define for that event.  For example the below case triggers when a message is received with the "user.new" topic binding and creates a new profile.  On an error the error message is published back to an error exchange on RabbitMQ for central logging and analysis.
+
+  ```js
+  
+  const { publishMessageQueue } = require("./publisher_connector");
+  ///	///
+  case "user.new":
+  	var args = {
+          gcID: messageBody.gcID,
+          name: messageBody.name,
+          email: messageBody.name
+      };
+  	try {
+      	await createProfile(null, args, context, "{gcID, name, email}");
+          success(true);
+      } catch(err){
+          if (err instanceof GraphQLError){
+          	let rejectMsg = {
+              	args,
+                  error: err
+              };
+              try{
+                  await publishMessageQueue("errors", "profile.creation", rejectMsg);
+              } catch(err){
+                  // eslint-disable-next-line no-console
+                  console.error(err);
+              }
+              // The error has been handled and no longer need to be in queue
+              success(true);
+          } else{
+              // If it's not a GraphQL Error then requeue it.
+              success(false);
+            }
+          }
+          break;
+  ```
+
+  

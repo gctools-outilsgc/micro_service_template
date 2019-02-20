@@ -8,6 +8,8 @@ var listenQueueOptions = {
     durable: true,
 };
 
+// Add any exchanges and associated topic binding keys
+// to the listenExhcnageAndBindings ojbect below
 const listenExchangesAndBindings = {
     // example; account: ["user.new", "user.modification", "user.delete"],
 };
