@@ -1,7 +1,15 @@
+/*
+The introspection function takes the accesst token that is
+provided on an incoming request as an Auth Bearer token and
+verifies it against an OpenID provider to test validity.
+*/
 const fetch = require("node-fetch");
 const config = require("../config");
 const { Prisma } = require("prisma-binding");
 const { throwExceptionIfProfileIsNotDefined } = require("../resolvers/helper/profileHelper");
+
+// The getTokenOwner sets the owners profile object information on the context
+// for use with Authorization directives
 
 async function getTokenOwner(tokenData){
 
@@ -24,6 +32,8 @@ async function getTokenOwner(tokenData){
     await throwExceptionIfProfileIsNotDefined(tokenData.owner);
     return tokenData;
 }
+
+// Verify if access token is valid and not expired
 
 async function verifyToken(request){
 
