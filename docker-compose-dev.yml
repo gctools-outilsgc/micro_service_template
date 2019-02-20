@@ -20,6 +20,8 @@ services:
       - postgres
   postgres:
     image: postgres:10.6
+    ports:
+    - "5432:5432"
     environment:
       POSTGRES_USER: prisma
       POSTGRES_PASSWORD: prisma
