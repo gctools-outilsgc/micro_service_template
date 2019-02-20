@@ -1,4 +1,3 @@
-require("dotenv").config();
 const config = require("../config");
 const amqp = require("amqplib/callback_api");
 const { msgHandler } = require("./handler");
@@ -86,7 +85,7 @@ function listenMessageQueue(exchange){
 // if the connection is closed or fails to be established at all, we will reconnect
 function connectMessageQueueListener(){
   
-    amqp.connect("amqp://" + process.env.MQ_USER + ":" + process.env.MQ_PASS + "@" + config.rabbitMQ.host +"?heartbeat=60", function(err, conn) {
+    amqp.connect("amqp://" + config.rabbitMQ.user + ":" + config.rabbitMQ.password + "@" + config.rabbitMQ.host +"?heartbeat=60", function(err, conn) {
         if (err) {
             // eslint-disable-next-line no-console
             console.error("[SMQ]", err.message);

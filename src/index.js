@@ -55,5 +55,8 @@ server.listen().then(({ url }) => {
 });
 
 // Lauch process to listen to service message queue
-connectMessageQueueListener();
-connectMessageQueuePublisher();
+
+if (config.rabbitMQ.user && config.rabbitMQ.password){
+  connectMessageQueueListener();
+  connectMessageQueuePublisher();
+}

@@ -3,6 +3,8 @@ require("dotenv").config();
 const env = process.env.NODE_ENV; // 'development' or 'production'
 const clientId = process.env.client_id;
 const clientSecret = process.env.client_secret;
+const mqUser = process.env.MQ_USER;
+const mqPass = process.env.MQ_PASS;
 
 const development = {
  app: {
@@ -15,7 +17,9 @@ const development = {
      debug: true
  },
  rabbitMQ:{
-   host:"localhost"
+   host:"localhost",
+   user: mqUser,
+   password: mqPass
  },
  openId:{
    url:"http://localhost:8000",
@@ -35,7 +39,9 @@ const production = {
      debug: false
  },
 rabbitMQ:{
-  host:"mq.gccollab.ca"
+  host:"mq.gccollab.ca",
+  user: mqUser,
+  password: mqPass
 },
 openId:{
   url:"https://account.gccollab.ca",
