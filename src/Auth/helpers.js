@@ -34,17 +34,7 @@ async function blockValue(field){
   
   }
 
-  function getOrganizationid(profileObject){
-    if (typeof profileObject !== "undefined" && propertyExists(profileObject.team, "organization")){
-        if (propertyExists(profileObject.team, "organization")){
-        return profileObject.team.organization.id;
-        }
-    } else {
-        return null;
-    }
-  }
 
   module.exports= {
       blockValue,
-      getOrganizationid
   };

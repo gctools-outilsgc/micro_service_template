@@ -1,8 +1,12 @@
 require("dotenv").config();
+// set runtime environment as'development' or 'production'
+const env = process.env.NODE_ENV; 
 
-const env = process.env.NODE_ENV; // 'development' or 'production'
+// OpenID provider clientID and Secret
 const clientId = process.env.client_id;
 const clientSecret = process.env.client_secret;
+
+// Message queue username and password
 const mqUser = process.env.MQ_USER;
 const mqPass = process.env.MQ_PASS;
 

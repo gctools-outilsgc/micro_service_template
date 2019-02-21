@@ -10,6 +10,7 @@ const { connectMessageQueuePublisher } = require("./Service_Mesh/publisher_conne
 const introspect = require("./Auth/introspection");
 
 const resolvers = {
+  // Add any other files that contain custom Scalar types here
   Query,
   Mutation,
 };

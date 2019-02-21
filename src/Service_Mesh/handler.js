@@ -1,7 +1,5 @@
 // Handler for messages from different exchanges and keys
 const { Prisma } = require("prisma-binding");
-const { createProfile } = require("../resolvers/Mutations");
-const {GraphQLError} = require("graphql");
 const { publishMessageQueue } = require("./publisher_connector");
 const config = require("../config");
 

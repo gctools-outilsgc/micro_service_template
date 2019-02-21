@@ -4,10 +4,14 @@ const { defaultFieldResolver } = require("graphql");
 const { blockValue, getOrganizationid } = require("./helpers");
 
 /*
-  Fragments for Auth:
+  Declare fragments for Auth directives here.
   These fragments will ensure that the fields that are required to identify relationships for access
   levels will always be returned.
 */
+
+
+
+
 
 /*
   List auth directive definitions in this section.
