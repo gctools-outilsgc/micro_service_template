@@ -4,7 +4,7 @@
 
 This micro service template fits into a solution architecture that has an OpenID Connect provider and a Messaging Queue.  In the Open Accessible Digital Workspace (OADW) solution architecture these requirements are filled by using [Concierge](https://github.com/gctools-outilsgc/concierge) (GCaccount) and [RabbitMQ](https://www.rabbitmq.com/).  This template is used to create the various micro services within this architecture like the Profile as a Service, Collaboration Service, and Notification service mocked out below.  In the `{project core}/examples` folder you will find some of the files that require modification for the setup of your micro service that include detailed examples.
 
-![OADW Solution Architecture example](./example/OADW_Architecture-Walkthrough.png)
+![OADW Solution Architecture example](./example/assets/OADW_Architecture-Walkthrough.png)
 
 ## Installation & Configuration
 
@@ -90,7 +90,6 @@ This is the heart of your micro service.  This section extends the data model th
       }
       ```
 
-      
   * Type Mutation
 
     * Holds all your mutations Ex.
@@ -183,3 +182,95 @@ RabbitMQ is leveraged in the solution architecture to handle event driven change
 
   
 
+### Authorization Directives
+
+Authorization directives are schema directives that can check against different conditions that if true will return the value originally requested or if false can either block a field from being returned or throw an error.  Eventually the current form of Authorization Directives will become much more robust however it is still a proof of concept.
+
+#### Getting Started
+
+* Declaring your directives in `./src/schema.graphql`  is very straight forward.  For example:
+
+  ```js
+  directive @isAuthenticated on OBJECT | FIELD_DEFINITION
+  directive @isSupervisor on FIELD_DEFINITION
+  ```
+
+  The above declares a directive called `isAuthentiated` that can be applied to an object Type or a field on an Object.
+
+  ```js
+  type Query {
+    addresses(id: ID, streetAddress: String, city: String, province: String, postalCode: String, country: String, skip: Int, first: Int): [Address!]! @isAuthenticated
+  }
+  
+  type Profile @isAuthenticated {
+    gcID: String! 
+    name: String! 
+    email: Email! 
+    mobilePhone: PhoneNumber @isSupervisor
+    officePhone: PhoneNumber @isSupervisor
+    address: Address
+    titleEn: String 
+    titleFr: String 
+    supervisor: Profile 
+    team: Team     
+  }
+  ```
+
+  
+
+* Defining your directives occurs in `./src/Auth/Directives.js` and the first section at the top is where we can define our fragments if required.  A fragment can be applied to a query to ensure that the fields that are required by your authorization logic are always returned even if the original request did not specify them.
+
+  ```js
+  const nameOfFragment = "fragment nameOfFragment on nameOfType {field, field, relation{field, field}}"
+  ```
+
+  Next a directive can be declared by extending the `SchemaDirectiveVisitor` and over rides declared for the `visitObject()` and `visitFieldDefinition` functions.  In the example below a directive is defined that will be used on object fields that verifies if the request sender is the supervisor of the returned request.  If the requester is the supervisor the field is passed through however if the logic fails the value is blocked by returning a null  value for the field through the `blockValue()` function.
+
+  ```js
+  class SupervisorDirective extends SchemaDirectiveVisitor {
+    visitFieldDefinition(field) {
+      const { resolve = defaultFieldResolver } = field;
+      field.resolve = async function(...args) {
+        const [record, requestArgs , ctx] = args;
+  
+        const requester = ctx.token.sub;
+        const requestedSuper = await getSupervisorid(record);
+  
+        if(requester !== null && requestedSuper !== null){
+          if(requester === requestedSuper){
+              return resolve.apply(this, args);
+          }
+        }
+  
+        return await blockValue(field);
+    },
+  })
+      };
+    }
+  }
+  ```
+
+* Including your directives occurs in the `./index.js` in the schema constant.
+
+  ```js
+  const schema = makeExecutableSchema({
+    typeDefs,
+    resolvers,
+    schemaDirectives: {
+      isAuthenticated: AuthDirectives.AuthenticatedDirective,
+      // list directives here
+    },
+  });
+  ```
+
+
+
+
+
+------
+
+
+
+Happy Coding!
+
+![Happy coding](./example/assets/happy_coding.png)
