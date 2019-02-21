@@ -10,7 +10,7 @@ var listenQueueOptions = {
 };
 
 const listenExchangesAndBindings = {
-    account: ["user.new", "user.modification", "user.delete"],
+    account: ["user.new"],
 };
 
 function closeOnErr(err, listenerChannel) {
