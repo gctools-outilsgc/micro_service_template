@@ -96,7 +96,8 @@ This is the heart of your micro service.  This section extends the data model th
 
       ```js
       type Mutation {
-      	createProfile(name: String!, email: String!):Profile!, 				modifyProfile(id: ID!, data:ModifyProfileInput):Profile!
+      	createProfile(name: String!, email: String!):Profile!,
+      	modifyProfile(id: ID!, data:ModifyProfileInput):Profile!
       }
       ```
   * Custom object and input types
