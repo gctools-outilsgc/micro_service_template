@@ -10,7 +10,7 @@
     "start": "node src/cluster.js",
     "dev": "PRISMA_API_ENDPOINT=localhost yarn prisma deploy && NODE_ENV=development node src/index.js",
     "eslint": "eslint src/",
-    "test": "PRISMA_API_ENDPOINT=localhost yarn prisma deploy && jest --runInBand --coverage"
+    "test": "PRISMA_API_ENDPOINT=localhost yarn prisma deploy && NODE_ENV=development jest --runInBand --coverage"
   },
   "jest": {
     "verbose": true,
