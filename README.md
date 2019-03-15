@@ -2,7 +2,7 @@
 
 ## Solution Architecture
 
-This micro service template fits into a solution architecture that has an OpenID Connect provider and a Messaging Queue.  In the Open Accessible Digital Workspace (OADW) solution architecture these requirements are filled by using [Concierge](https://github.com/gctools-outilsgc/concierge) (GCaccount) and [RabbitMQ](https://www.rabbitmq.com/).  This template is used to create the various micro services within this architecture like the Profile as a Service, Collaboration Service, and Notification service mocked out below.  In the `{project core}/examples` folder you will find some of the files that require modification for the setup of your micro service that include detailed examples.
+This micro service template fits into a solution architecture that has an OpenID Connect provider and a Messaging Queue.  In the Open Accessible Digital Workspace (OADW) solution architecture these requirements are filled by using [Concierge](https://github.com/gctools-outilsgc/concierge) (GCaccount) and [RabbitMQ](https://www.rabbitmq.com/).  This template is used to create the various micro services within this architecture like the Profile as a Service, Collaboration Service, and Notification service mocked out below.  In the `./examples` folder you will find some of the files that require modification for the setup of your micro service that include detailed examples.
 
 ![OADW Solution Architecture example](./example/assets/OADW_Architecture-Walkthrough.png)
 
@@ -21,7 +21,7 @@ To configure this application there are 2 files that require modification.
 
 2. `./.env`
 
-    This file contains the secrets required for the application and can be set eitehr through ENV variables or through this file.
+    This file contains the secrets required for the application and can be set either through ENV variables or through this file.
 * `MQ_USER` = Username for RabbitMQ instance set in `./src/config.js`
 * `MQ_PASS` = Password for RabbitMQ instance
 * `CLIENT_ID` = The client_ID from the client created in Concierge for this micro service
@@ -35,8 +35,8 @@ To setup this application in development run the following commands:
 * `sudo npm install`
 * `npm start dev`
 
-The profile as a service playground endpoint can now be reached at http://localhost:4000/playground and the graphql endpoint at http://localhost:4000/graphql
-The prisma service can be reached at http://localhost:4466/profile
+The Apollo GraphQL service endpoint and playground can now be reached at http://localhost:4000/
+The Prisma service playground can be reached at http://localhost:4466/profile
 
 ### Production
 
@@ -44,7 +44,7 @@ To setup this application for production:
 
 * `sudo docker-compose up --build -d`
 
-The profile as a service playground endpoint can now be reached at http://localhost:4000/playground and the graphql endpoint at http://localhost:4000/graphql
+The service endpoint can now be reached at http://localhost:4000.  The Prisma endpoint is not available outside of the docker-compose container.  The container can now be proxied through an Nginx or Apache instance.  SSL/TLS encryption should be handled by Nginx/Apache and not the micro service.
 
 ## Micro Service Components
 
@@ -68,8 +68,8 @@ This micro services relies on a Prisma API as a back end to house and store data
 
 #### Getting Started
 
-* Modify the `{project root}/prisma/datamodel.graphql	` to declare your services data model
-* This model will be pushed to the Prisma server when launching both the `development` and `production` docker environments.  Upon successful completion a generated API schema file will be copied to  `{project root}/src/generated/prisma.graphql`
+* Modify the `./prisma/datamodel.graphql	` to declare your services data model
+* This model will be pushed to the Prisma server when launching both the development and production docker environments.  Upon successful completion a generated API schema file will be copied to  `./src/generated/prisma.graphql`
 
 ### GraphQL Schema and Resolvers
 
@@ -77,7 +77,7 @@ This is the heart of your micro service.  This section extends the data model th
 
 #### Getting Started
 
-* Define your extended data model in `{project root}/src/schema.graphql`
+* Define your extended data model in `./src/schema.graphql`
   * Any models that need to be reused can be imported in their entirety by importing them from the generated Prisma file `# import Address from './generated/prisma.graphql'`.  Only import types where you want to expose all existing fields from the type through your micro service.  
   * Type Query
 
@@ -103,10 +103,10 @@ This is the heart of your micro service.  This section extends the data model th
   * Custom object and input types
     * These objects extend your Prisma object definitions.  Essentially they mimic the same data model but provide the ability to hide fields that should never be visible outside of your micro service.
     * Input types enable the ability to accept data for your Mutations types.
-* Define your Queries in `{project root}/src/resolvers/Query.js`
+* Define your Queries in `./src/resolvers/Query.js`
 
   * This is where the micro service handles the graphQL query requests that it receives and fills those requests by calling the Prisma API.  See in line comments in the code itself for our example of a `profiles` query.
-* Define your Mutations in `{project root}/src/resolvers/Mutations.js`
+* Define your Mutations in `./src/resolvers/Mutations.js`
 
   * This is where the micro service handles the graphQL mutation requests that it receives and fulfills those requests by calling the Prisma API.  See in line comments in the code itself for our example of mutations that could be performed on a profile object. 
 
@@ -144,7 +144,7 @@ RabbitMQ is leveraged in the solution architecture to handle event driven change
   }
   ```
 
-* The events that arrive through the listener are handled in `./src/Service_Mesh/hander.js`.  The `msgHandler` function accepts all in coming messages and matches the topic binding key in a switch case.  The triggered case then applies the appropriate logic that you define for that event.  For example the below case triggers when a message is received with the "user.new" topic binding and creates a new profile.  On an error the error message is published back to an error exchange on RabbitMQ for central logging and analysis.
+* The events that arrive through the listener are handled in `./src/Service_Mesh/hander.js`.  The `msgHandler` function accepts all incoming messages and matches the topic binding key in a switch case.  The triggered case then applies the appropriate logic that you define for that event.  For example the below case triggers when a message is received with the "user.new" topic binding and creates a new profile.  On an error the error message is published back to an error exchange on RabbitMQ for central logging and analysis.
 
   ```js
   
@@ -225,7 +225,7 @@ Authorization directives are schema directives that can check against different 
   const nameOfFragment = "fragment nameOfFragment on nameOfType {field, field, relation{field, field}}"
   ```
 
-  Next a directive can be declared by extending the `SchemaDirectiveVisitor` and over rides declared for the `visitObject()` and `visitFieldDefinition` functions.  In the example below a directive is defined that will be used on object fields that verifies if the request sender is the supervisor of the returned request.  If the requester is the supervisor the field is passed through however if the logic fails the value is blocked by returning a null  value for the field through the `blockValue()` function.
+  Next a directive can be declared by extending `SchemaDirectiveVisitor` and over rides declared for the `visitObject()` and `visitFieldDefinition` functions.  In the example below a directive is defined that will be used on object fields that verifies if the request sender is the supervisor of the returned request.  If the requester is the supervisor the field is passed through however if the logic fails the value is blocked by returning a null  value for the field through the `blockValue()` function.
 
   ```js
   class SupervisorDirective extends SchemaDirectiveVisitor {
