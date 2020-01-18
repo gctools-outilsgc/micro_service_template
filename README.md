@@ -9,7 +9,9 @@ This micro service template fits into a solution architecture that has an OpenID
 ## Installation & Configuration
 
 This application/solution is built to be run in 2 different environments (Development / Production)
-The `development` flag will enable debugging for the Prisma API which outputs all requests and responses to console.  It will also enable the graphQL playground and introspection for your micro service.  It is best practice to disable these features in a production environment and as such they are disabled with the `production` flag.  These flags can be set either on the command line or in docker-compose.
+The `development` flag will enable debugging for the Prisma API which outputs all requests and responses to console.  It will also enable the graphQL playground and introspection for your micro service.  It is best practice to disable these features in a production environment and as such they are disabled with the `production` flag.  These flags can be set either on the command line or in docker-compose. 
+
+This project requires you to install [Docker](https://www.docker.com/), [Node](https://nodejs.org/en/), and [Yarn](https://yarnpkg.com/en/docs/install#debian-stable)
 
 ### Secrets Configuration
 
