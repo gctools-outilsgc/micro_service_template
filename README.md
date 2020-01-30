@@ -35,7 +35,7 @@ To setup this application in development run the following commands:
 
 * `sudo docker-compose -f docker-compose-dev.yml up`
 * `sudo npm install`
-* `npm start dev` or `npm run dev`
+* `npm start` or `npm run dev`
 
 The Apollo GraphQL service endpoint and playground can now be reached at http://localhost:4000/
 The Prisma service playground can be reached at http://localhost:4466/profile
