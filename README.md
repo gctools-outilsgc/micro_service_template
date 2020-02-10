@@ -11,7 +11,7 @@ This micro service template fits into a solution architecture that has an OpenID
 This application/solution is built to be run in 2 different environments (Development / Production)
 The `development` flag will enable debugging for the Prisma API which outputs all requests and responses to console.  It will also enable the graphQL playground and introspection for your micro service.  It is best practice to disable these features in a production environment and as such they are disabled with the `production` flag.  These flags can be set either on the command line or in docker-compose. 
 
-This project requires you to install [Docker](https://www.docker.com/), [Node](https://nodejs.org/en/), and [Yarn](https://yarnpkg.com/en/docs/install#debian-stable)
+This project requires you to install [Docker](https://www.docker.com/), [Node](https://nodejs.org/en/), [Yarn](https://yarnpkg.com/en/docs/install#debian-stable) and use a [Linux](https://www.linux.org/) server
 
 ### Secrets Configuration
 
@@ -35,7 +35,7 @@ To setup this application in development run the following commands:
 
 * `sudo docker-compose -f docker-compose-dev.yml up`
 * `sudo npm install`
-* `npm start dev` or `npm run dev`
+* `npm start` or `npm run dev`
 
 The Apollo GraphQL service endpoint and playground can now be reached at http://localhost:4000/
 The Prisma service playground can be reached at http://localhost:4466/profile

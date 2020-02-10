@@ -4,6 +4,11 @@
 directive @isAuthenticated on OBJECT | FIELD_DEFINITION
 
 # Examples only.. do not use and replace with your own types.
+
+scalar Email
+scalar PhoneNumber
+scalar PostalCode
+
 type Query {
   profiles(gcID: String, name: String, email: String, mobilephone: String, officePhone: String , titleEn: String, titleFr: String, skip: Int, first: Int): [Profile!]!,
   addresses(id: ID, streetAddress: String, city: String, province: String, postalCode: String, country: String, skip: Int, first: Int): [Address!]!,
@@ -26,6 +31,38 @@ type Profile {
   titleFr: String 
   supervisor: Profile 
   team: Team     
+}
+
+type Address {
+  id: ID!
+  streetAddress: String!
+  city: String!
+  province: String!
+  postalCode: String!
+  country: String!,
+  resident: Profile!
+}
+
+type Team {
+  id: ID!
+  nameEn: String!
+  nameFr: String!
+  descriptionEn: String
+  descriptionFr: String,
+  colour: String,
+  avatar: String,
+  organization: Organization!
+  owner: Profile
+  members: [Profile!]!
+}
+
+type Organization {
+  id: ID!
+  nameEn: String!
+  nameFr: String!
+  acronymEn: String!
+  acronymFr: String!
+  teams: [Team!]!
 }
 
 input SupervisorInput {
