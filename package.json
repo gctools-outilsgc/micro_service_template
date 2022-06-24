@@ -44,7 +44,7 @@
     "express-jwt": "^5.3.1",
     "graphql": "^14.1.1",
     "graphql-binding": "^2.5.0",
-    "node-fetch": "^2.3.0",
+    "node-fetch": "^2.6.7",
     "prisma": "^1.27.0",
     "prisma-binding": "^2.3.3",
     "request": "^2.88.0",
