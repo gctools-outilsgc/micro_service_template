@@ -36,7 +36,7 @@
   "license": "AGPL-3.0-or-later",
   "dependencies": {
     "amqplib": "^0.5.3",
-    "apollo-server": "^2.4.3",
+    "apollo-server": "^2.25.4",
     "cluster": "^0.7.7",
     "codacy-coverage": "^3.4.0",
     "dotenv": "^6.2.0",
